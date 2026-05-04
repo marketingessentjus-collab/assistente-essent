@@ -1,0 +1,147 @@
+/*
+ * Essent — Assistente de Comunicação
+ * Design: Swiss International Style
+ * Palette: Navy #002060 | Blue #0099ff | Background #f2f2f2
+ * Font: Blinker (300, 400, 600, 700, 900)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.95 0.002 240);
+  --foreground: oklch(0.12 0.06 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.06 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.06 240);
+  --primary: oklch(0.22 0.09 240);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.005 240);
+  --secondary-foreground: oklch(0.22 0.09 240);
+  --muted: oklch(0.94 0.005 240);
+  --muted-foreground: oklch(0.5 0.03 240);
+  --accent: oklch(0.6 0.2 220);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.01 240);
+  --input: oklch(0.97 0.005 240);
+  --ring: oklch(0.6 0.2 220);
+
+  /* Essent brand colors */
+  --essent-navy: #002060;
+  --essent-blue: #0099ff;
+  --essent-bg: #f2f2f2;
+  --essent-card: #ffffff;
+  --essent-border: #dce4f5;
+  --essent-muted: #6b7a99;
+  --essent-info-bg: #f0f6ff;
+  --essent-info-border: #cce3ff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Blinker', sans-serif;
+    min-height: 100vh;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f2f2f2; }
+::-webkit-scrollbar-thumb { background: #cce3ff; border-radius: 3px; }
+
+/* Spin animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin-anim {
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
